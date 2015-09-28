@@ -2,7 +2,7 @@
 
 	require 'vendor/autoload.php';
 
-	function send_email ($to, $subject, $body, $message, $from = "<donotreply@safe-refuge-7349.herokuapp.com>")
+	function send_email ($to, $subject, $body, $message, $from = "<donotreply@" . gethostname() . ">")
 	{
 		$sendgrid = new SendGrid($_ENV["SENDGRID_USERNAME"], $_ENV["SENDGRID_PASSWORD"]);
 		$email = new SendGrid\Email();
