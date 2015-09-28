@@ -77,7 +77,7 @@
 			if (strlen($_POST["contact_message"]) < 2) $errors["contact_message"] = "Please enter your message";
 			if (isEmpty($errors))
 			{
-				$to = "test@loosescre.ws";
+				$to = "m1samuel@ucsd.edu";
 				$from = $_POST["contact_email"];
 				$subject = "Contact Form Message";
 				$message = "Thank you for contacting us. Your message has been successfully sent to one of our technicians. You should receive a reply within one business day.";

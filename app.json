@@ -1,0 +1,8 @@
+{
+	"name": "PHP Contact form",
+	"description": "PHP contact form for Heroku using Sendgrid.",
+	"website": "https://github.com/iangudger/php_contact_form",
+	"repository": "https://github.com/iangudger/php_contact_form",
+	"keywords": ["php", "Sendgrid", "contact", "form", "contact form"],
+	"addons": ["papertrail", "sendgrid:starter"]
+}
