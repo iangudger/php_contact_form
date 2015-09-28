@@ -1,13 +1,4 @@
-<?php
-
-	function varDumpToString($var)
-	{
-		ob_start();
-		var_dump($var);
-		$result = ob_get_clean();
-		return $result;
-	}
-
+<?php 
 	function send_email ($to, $subject, $body, $message, $from = "<donotreply@safe-refuge-7349.herokuapp.com>")
 	{
 		// note the above parameters now referenced in the 'subject', 'html', and 'text' sections
@@ -35,7 +26,12 @@
 		$response = curl_exec($session);
 		curl_close($session);
 		
-		return ("<p>" . varDumpToString($response) . "</p><p>" . $message . "</p>");
+		if !$response
+		{
+			return "<p>" . $message . "</p>";
+		}
+
+		return "<p>" . $response . "</p>";
 	}
 
 	function is_valid_email($value)
