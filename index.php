@@ -1,8 +1,9 @@
 <?php 
 
 	require 'vendor/autoload.php';
+	$hostname = gethostname();
 
-	function send_email ($to, $subject, $body, $message, $from = ("<donotreply@" . gethostname() . ">"))
+	function send_email ($to, $subject, $body, $message, $from = "<donotreply@$hostname>")
 	{
 		$sendgrid = new SendGrid($_ENV["SENDGRID_USERNAME"], $_ENV["SENDGRID_PASSWORD"]);
 		$email = new SendGrid\Email();
