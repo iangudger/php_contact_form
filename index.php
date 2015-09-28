@@ -93,7 +93,7 @@
 			}
 		}
 		$form_code = '<!--Bluehost-->
-		<form action="' . get_permalink() . '" method="post" id="contactForm">
+		<form action="." method="post" id="contactForm">
 			<h2>Contact Us</h2>
 			<div>
 				<label for="contact_name">Name </label><em>(required, at least 2 characters)</em><br />
