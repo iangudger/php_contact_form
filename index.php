@@ -82,7 +82,7 @@
 			{
 				$to = "test@loosescre.ws";
 				$from = $_POST["contact_email"];
-				$subject = get_bloginfo('name') . " Contact Form Message";
+				$subject = "Contact Form Message";
 				$message = "Thank you for contacting " . get_bloginfo('name') . ". Your message has been successfully sent to one of our technicians. You should receive a reply within one business day.";
 				$body = 'Name: ' . $_POST["contact_name"] . "\n";
 				$body .= 'Email: ' . $_POST["contact_email"] . "\n";
