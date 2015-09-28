@@ -81,11 +81,11 @@
 				$from = $_POST["contact_email"];
 				$subject = "Contact Form Message";
 				$message = "Thank you for contacting us. Your message has been successfully sent to one of our technicians. You should receive a reply within one business day.";
-				$body = 'Name: ' . $_POST["contact_name"] . "\n";
-				$body .= 'Email: ' . $_POST["contact_email"] . "\n";
-				$body .= 'Phone: ' . $_POST["contact_phone"] . 'Ext: ' . $_POST["contact_ext"] . "\n";
-				$body .= 'Reason: ' . $_POST["reason"] . "\n";
-				$body .= "Message:\n" . $_POST["contact_message"] . "\n";
+				$body = 'Name: ' . $_POST["contact_name"] . "\n\n";
+				$body .= 'Email: ' . $_POST["contact_email"] . "\n\n";
+				$body .= 'Phone: ' . $_POST["contact_phone"] . 'Ext: ' . $_POST["contact_ext"] . "\n\n";
+				$body .= 'Reason: ' . $_POST["reason"] . "\n\n";
+				$body .= "Message:\n" . $_POST["contact_message"] . "\n\n";
 				return send_email ($to, $subject, $body, $message, $from);
 			}
 		}
