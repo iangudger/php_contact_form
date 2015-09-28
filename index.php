@@ -4,7 +4,7 @@
 
 	function send_email ($to, $subject, $body, $message)
 	{
-		$from = "<donotreply@" . gethostname() . ">";
+		$from = "<donotreply@" . $_SERVER['SERVER_NAME'] . ">";
 		$sendgrid = new SendGrid($_ENV["SENDGRID_USERNAME"], $_ENV["SENDGRID_PASSWORD"]);
 		$email = new SendGrid\Email();
 
