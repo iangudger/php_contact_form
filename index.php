@@ -1,4 +1,7 @@
 <?php 
+
+	$url = 'https://api.sendgrid.com/'; 
+
 	function send_email ($to, $subject, $body, $message, $from = "<donotreply@safe-refuge-7349.herokuapp.com>")
 	{
 		// note the above parameters now referenced in the 'subject', 'html', and 'text' sections
