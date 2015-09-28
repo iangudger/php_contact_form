@@ -1,43 +1,29 @@
 <?php 
 
-	$url = 'https://api.sendgrid.com/';
+	require 'vendor/autoload.php';
 
 	function send_email ($to, $subject, $body, $message, $from = "<donotreply@safe-refuge-7349.herokuapp.com>")
 	{
-		// note the above parameters now referenced in the 'subject', 'html', and 'text' sections
-		// make the to email be your own address or where ever you would like the contact form info sent
-		$params = array(
-			'api_user'  => $_ENV["SENDGRID_USERNAME"],
-			'api_key'   => $_ENV["SENDGRID_PASSWORD"],
-			'to'        => $to, // set TO address to have the contact form's email content sent to
-			'subject'   => "Contact Form Submission", // Either give a subject for each submission, or set to $subject
-			'text'      => $body,
-			'from'      => $from, // set from address here, it can really be anything
-		);
-		
-		$request =  $url.'api/mail.send.json';
-		// Generate curl request
-		$session = curl_init($request);
+		$sendgrid = new SendGrid($_ENV["SENDGRID_USERNAME"], $_ENV["SENDGRID_PASSWORD"]);
+		$email = new SendGrid\Email();
 
-		curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+		$email
+			->addTo("$to")
+			->setFrom("$from")
+			->setSubject("Contact Form Submission")
+			->setText("$body")
+		;
 
-		// Tell curl to use HTTP POST
-		curl_setopt ($session, CURLOPT_POST, true);
-		// Tell curl that this is the body of the POST
-		curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
-		// Tell curl not to return headers, but do return the response
-		curl_setopt($session, CURLOPT_HEADER, false);
-		curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
-		// obtain response
-		$response = curl_exec($session);
-		curl_close($session);
-		
-		if (!$response)
-		{
+		try {
+			$sendgrid->send($email);
 			return "<p>" . $message . "</p>";
+		} catch(\SendGrid\Exception $e) {
+			$error = "$e->getCode()";
+			foreach($e->getErrors() as $er) {
+				$error .= "$er";
+			}
+			return "<p>" . $error . "</p>";
 		}
-
-		return "<p>" . $response . "</p>";
 	}
 
 	function is_valid_email($value)
