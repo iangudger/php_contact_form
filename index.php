@@ -26,7 +26,7 @@
 		$response = curl_exec($session);
 		curl_close($session);
 		
-		if !$response
+		if (!$response)
 		{
 			return "<p>" . $message . "</p>";
 		}
