@@ -1,7 +1,6 @@
 <?php 
 
-	$url = 'https://api.sendgrid.com/'; 
-	CURL_SSLVERSION_DEFAULT (0);
+	$url = 'https://api.sendgrid.com/';
 
 	function send_email ($to, $subject, $body, $message, $from = "<donotreply@safe-refuge-7349.herokuapp.com>")
 	{
@@ -15,10 +14,13 @@
 			'text'      => $body,
 			'from'      => $from, // set from address here, it can really be anything
 		);
-		//curl_setopt($curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+		
 		$request =  $url.'api/mail.send.json';
 		// Generate curl request
 		$session = curl_init($request);
+
+		curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+
 		// Tell curl to use HTTP POST
 		curl_setopt ($session, CURLOPT_POST, true);
 		// Tell curl that this is the body of the POST
