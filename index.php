@@ -25,8 +25,11 @@
 		// obtain response
 		$response = curl_exec($session);
 		curl_close($session);
-				
-		return ("<p>" . $response . "</p><p>" . $message . "</p>");
+		
+		if (isEmpty($response)) {
+			return ("<p>" . $message . "</p>")
+		}
+		return ("<p>" . $response . "</p>");
 	}
 
 	function is_valid_email($value)
